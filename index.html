@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <title>Schuba Diving Simulation</title>
+        
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> 
+
+        <script src='rotation.js'></script>
+        <script src='fish.js'></script>
+        <script src='treasure.js'></script>
+        <script src='game.js'></script>
+    </head>
+
+    <body>
+        <a-scene background='color: #006994'>
+            <a-entity id='look' look-controls camera position='0 15 20'></a-entity>
+            
+            <a-assets timeout='1000'>
+                <a-asset-item 
+                    id='island' 
+                    src='./Models/low_poly_island/scene.gltf'
+                ></a-asset-item>
+
+                <a-asset-item 
+                    id='diver' 
+                    src='./Models/dive-suit/scene.gltf'
+                ></a-asset-item>
+            </a-assets>
+
+            <a-entity
+                id='islandModel'
+                gltf-model='#island'
+                position='0 0 0'
+                scale='11 7 10'
+                island-rotation
+                coins
+                fish
+            ></a-entity>
+
+            <a-entity
+                id='diverModel'
+                gltf-model='#diver'
+                position='5 6 18'
+                scale='0.1 0.1 0.1'
+                rotation='0 90 -20'
+                dynamic-body = 'mass:0'
+                diver-rotation
+                game-play
+            ></a-entity>
+
+            <a-entity
+                id='header'
+                position='1 -4 0'
+            >
+            <a-entity
+                position='-28.5 35 0'
+                text='font: exo2bold; align: center; width: 14; color: black; value: Scuba Diving Simulation'
+            ></a-entity>
+
+            <a-entity 
+                position='-23.5 19.3 0'
+            >
+            <a-entity
+                position='-1.5 14 0'
+                text='font: exo2bold; width: 12; color: black; value:Time\nRemaining'
+            ></a-entity>
+
+            <a-entity
+                id='timer'
+                position='-0.8 14 0'
+                text='font: exo2bold; align: center; width: 30; color: black; value: 00:00'
+            ></a-entity>
+            </a-entity>
+
+            <!-- Target Status -->
+            <a-entity position="-18 19.3 0">
+                <a-entity
+                    position="3 14 0"
+                    text="font: aileronsemibold; width: 12; color: black; value: COINS\nREMAINING"
+                ></a-entity>
+                <a-entity
+                    id="targets"
+                    position="2 14.2 0"
+                    text="font: exo2bold; align: center; width: 30; color: black; value: 20"
+                ></a-entity>
+            </a-entity>
+
+            <!-- Score -->
+            <a-entity position="25 35 0">
+                <a-entity
+                    position=""
+                    text="font: exo2bold; align: center; width: 40; color: black; value: SCORE"
+                ></a-entity>
+                <a-entity
+                    id="score"
+                    position="0 -1.7 0"
+                    text="font: exo2bold; align: center; width: 40; color: black; value: 0"
+                ></a-entity>
+                </a-entity>
+            </a-entity>
+            <a-entity
+                id="game_over_text"
+                position="0 7.5 0"
+                text="font: exo2bold; align: center; width: 100; color: white;value: Game Over!!!"
+                visible="false"
+            ></a-entity>
+        </a-entity>
+      </a-scene>
+    </body>
+</html>
